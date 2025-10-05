@@ -449,8 +449,11 @@ async def smart_query_endpoint(request: Request):
         # Use LLM service for intelligent query analysis
         start_time = time.time()
         
-        # Initialize LLM service with the provided API key
-        cursor_api_key = "key_dcf872079f1f009d2fd8fc0d22726ac2173fd4f9da0eb93e9a94ddf0c4779f54"
+        # Initialize LLM service with environment variable
+        cursor_api_key = os.getenv("CURSOR_API_KEY")
+        if not cursor_api_key:
+            print("Warning: CURSOR_API_KEY not found in environment variables")
+            cursor_api_key = "demo_key"  # Fallback for demo purposes
         
         # Import and initialize LLM service
         try:

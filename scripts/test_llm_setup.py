@@ -22,7 +22,10 @@ async def test_llm_service():
     print("🧪 Testing LLM Service Setup...")
     
     # Initialize LLM service with test API key
-    test_api_key = "key_dcf872079f1f009d2fd8fc0d22726ac2173fd4f9da0eb93e9a94ddf0c4779f54"
+    # Use environment variable for API key
+    test_api_key = os.getenv("CURSOR_API_KEY", "demo_key")
+    if test_api_key == "demo_key":
+        print("Warning: Using demo API key. Set CURSOR_API_KEY environment variable for real testing.")
     llm_service = initialize_llm_service(test_api_key)
     
     print(f"✅ LLM Service initialized with API key: {test_api_key[:20]}...")

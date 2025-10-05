@@ -22,7 +22,10 @@ async def test_integration():
     print("🧪 Testing LLM Integration...")
     
     # Set up the Cursor API key
-    cursor_api_key = "key_dcf872079f1f009d2fd8fc0d22726ac2173fd4f9da0eb93e9a94ddf0c4779f54"
+    # Use environment variable for API key
+    cursor_api_key = os.getenv("CURSOR_API_KEY", "demo_key")
+    if cursor_api_key == "demo_key":
+        print("Warning: Using demo API key. Set CURSOR_API_KEY environment variable for real testing.")
     
     # Initialize services
     print("🔧 Initializing LLM services...")
