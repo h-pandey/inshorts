@@ -1,0 +1,1422 @@
+{
+	"info": {
+		"_postman_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+		"name": "Contextual News Data Retrieval System",
+		"description": "Complete API collection for the Contextual News Data Retrieval System with LLM integration. This collection includes all endpoints for news retrieval, smart query processing, and system health checks.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12345678"
+	},
+	"item": [
+		{
+			"name": "Health & System",
+			"item": [
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/health",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"health"
+							]
+						},
+						"description": "Check the health status of the API service"
+					},
+					"response": []
+				},
+				{
+					"name": "Root Endpoint",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								""
+							]
+						},
+						"description": "Get API information and status"
+					},
+					"response": []
+				},
+				{
+					"name": "API Documentation",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/docs",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"docs"
+							]
+						},
+						"description": "Access interactive API documentation (Swagger UI)"
+					},
+					"response": []
+				}
+			],
+			"description": "System health and documentation endpoints"
+		},
+		{
+			"name": "News Endpoints",
+			"item": [
+				{
+					"name": "Get News by Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/news/category?category={{category}}&limit={{limit}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"news",
+								"category"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "{{category}}",
+									"description": "News category (technology, sports, business, world, entertainment, national, politics)"
+								},
+								{
+									"key": "limit",
+									"value": "{{limit}}",
+									"description": "Maximum number of articles (1-100, default: 20)"
+								}
+							]
+						},
+						"description": "Retrieve articles from a specific category, ranked by publication date (newest first)"
+					},
+					"response": []
+				},
+				{
+					"name": "Search News",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/news/search?query={{search_query}}&limit={{limit}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"news",
+								"search"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "{{search_query}}",
+									"description": "Search term to look for in title and description"
+								},
+								{
+									"key": "limit",
+									"value": "{{limit}}",
+									"description": "Maximum number of articles (1-100, default: 20)"
+								}
+							]
+						},
+						"description": "Search articles by text in title and description, ranked by relevance score and text matching"
+					},
+					"response": []
+				},
+				{
+					"name": "Get News by Source",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/news/source?source={{source_name}}&limit={{limit}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"news",
+								"source"
+							],
+							"query": [
+								{
+									"key": "source",
+									"value": "{{source_name}}",
+									"description": "News source name (Hindustan Times, Reuters, News18, etc.)"
+								},
+								{
+									"key": "limit",
+									"value": "{{limit}}",
+									"description": "Maximum number of articles (1-100, default: 20)"
+								}
+							]
+						},
+						"description": "Retrieve articles from a specific news source, ranked by publication date (newest first)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get News by Score",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/news/score?min_score={{min_score}}&limit={{limit}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"news",
+								"score"
+							],
+							"query": [
+								{
+									"key": "min_score",
+									"value": "{{min_score}}",
+									"description": "Minimum relevance score (0.0-1.0, default: 0.7)"
+								},
+								{
+									"key": "limit",
+									"value": "{{limit}}",
+									"description": "Maximum number of articles (1-100, default: 20)"
+								}
+							]
+						},
+						"description": "Retrieve articles with relevance score above a threshold, ranked by relevance score (highest first)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get News Nearby",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/news/nearby?lat={{latitude}}&lon={{longitude}}&radius_km={{radius_km}}&limit={{limit}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"news",
+								"nearby"
+							],
+							"query": [
+								{
+									"key": "lat",
+									"value": "{{latitude}}",
+									"description": "Latitude (-90 to 90)"
+								},
+								{
+									"key": "lon",
+									"value": "{{longitude}}",
+									"description": "Longitude (-180 to 180)"
+								},
+								{
+									"key": "radius_km",
+									"value": "{{radius_km}}",
+									"description": "Search radius in kilometers (0.1-1000, default: 10.0)"
+								},
+								{
+									"key": "limit",
+									"value": "{{limit}}",
+									"description": "Maximum number of articles (1-100, default: 20)"
+								}
+							]
+						},
+						"description": "Retrieve articles within a specified radius of a location, ranked by distance"
+					},
+					"response": []
+				}
+			],
+			"description": "Core news retrieval endpoints"
+		},
+		{
+			"name": "Smart Query (LLM-Powered)",
+			"item": [
+				{
+					"name": "Smart Query - Basic",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"{{smart_query}}\",\n  \"limit\": {{limit}},\n  \"include_summary\": {{include_summary}},\n  \"include_analysis\": {{include_analysis}}\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/news/query",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"news",
+								"query"
+							]
+						},
+						"description": "Intelligent query processing using LLM to analyze queries and route to appropriate endpoints"
+					},
+					"response": []
+				},
+				{
+					"name": "Smart Query - With Location",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"{{smart_query}}\",\n  \"location\": {\n    \"lat\": {{latitude}},\n    \"lon\": {{longitude}}\n  },\n  \"limit\": {{limit}},\n  \"include_summary\": {{include_summary}},\n  \"include_analysis\": {{include_analysis}}\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/news/query",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"news",
+								"query"
+							]
+						},
+						"description": "Smart query with location context for location-aware news retrieval"
+					},
+					"response": []
+				},
+				{
+					"name": "Smart Query - Technology News",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"latest technology news and AI developments\",\n  \"limit\": 5,\n  \"include_summary\": true,\n  \"include_analysis\": true\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/news/query",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"news",
+								"query"
+							]
+						},
+						"description": "Example: Technology news query with full analysis"
+					},
+					"response": []
+				},
+				{
+					"name": "Smart Query - Sports News",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"cricket match results and sports updates\",\n  \"limit\": 3,\n  \"include_summary\": true,\n  \"include_analysis\": true\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/news/query",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"news",
+								"query"
+							]
+						},
+						"description": "Example: Sports news query"
+					},
+					"response": []
+				},
+				{
+					"name": "Smart Query - Business News",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"business and finance news from India\",\n  \"limit\": 4,\n  \"include_summary\": true,\n  \"include_analysis\": true\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/news/query",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"news",
+								"query"
+							]
+						},
+						"description": "Example: Business news query"
+					},
+					"response": []
+				},
+				{
+					"name": "Smart Query - Source Specific",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"news from Reuters about world events\",\n  \"limit\": 3,\n  \"include_summary\": true,\n  \"include_analysis\": true\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/news/query",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"news",
+								"query"
+							]
+						},
+						"description": "Example: Source-specific news query"
+					},
+					"response": []
+				},
+				{
+					"name": "Smart Query - High Quality News",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"high quality important news articles\",\n  \"limit\": 5,\n  \"include_summary\": true,\n  \"include_analysis\": true\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/news/query",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"news",
+								"query"
+							]
+						},
+						"description": "Example: High-quality news query (score-based)"
+					},
+					"response": []
+				},
+				{
+					"name": "Smart Query - Location Based",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"news near Delhi\",\n  \"location\": {\n    \"lat\": 28.6139,\n    \"lon\": 77.2090\n  },\n  \"limit\": 5,\n  \"include_summary\": true,\n  \"include_analysis\": true\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/news/query",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"news",
+								"query"
+							]
+						},
+						"description": "Example: Location-based news query"
+					},
+					"response": []
+				},
+				{
+					"name": "Smart Query - Complex Query",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"latest technology news from Hindustan Times about AI and machine learning\",\n  \"limit\": 3,\n  \"include_summary\": true,\n  \"include_analysis\": true\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/news/query",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"news",
+								"query"
+							]
+						},
+						"description": "Example: Complex multi-criteria query"
+					},
+					"response": []
+				}
+			],
+			"description": "LLM-powered smart query endpoints with various examples"
+		},
+		{
+			"name": "Test Scenarios",
+			"item": [
+				{
+					"name": "Test All Categories",
+					"item": [
+						{
+							"name": "Technology",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v1/news/category?category=technology&limit=3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"news",
+										"category"
+									],
+									"query": [
+										{
+											"key": "category",
+											"value": "technology"
+										},
+										{
+											"key": "limit",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sports",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v1/news/category?category=sports&limit=3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"news",
+										"category"
+									],
+									"query": [
+										{
+											"key": "category",
+											"value": "sports"
+										},
+										{
+											"key": "limit",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Business",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v1/news/category?category=business&limit=3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"news",
+										"category"
+									],
+									"query": [
+										{
+											"key": "category",
+											"value": "business"
+										},
+										{
+											"key": "limit",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "World",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v1/news/category?category=world&limit=3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"news",
+										"category"
+									],
+									"query": [
+										{
+											"key": "category",
+											"value": "world"
+										},
+										{
+											"key": "limit",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Entertainment",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v1/news/category?category=entertainment&limit=3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"news",
+										"category"
+									],
+									"query": [
+										{
+											"key": "category",
+											"value": "entertainment"
+										},
+										{
+											"key": "limit",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "National",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v1/news/category?category=national&limit=3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"news",
+										"category"
+									],
+									"query": [
+										{
+											"key": "category",
+											"value": "national"
+										},
+										{
+											"key": "limit",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "Test all available news categories"
+				},
+				{
+					"name": "Test All Sources",
+					"item": [
+						{
+							"name": "Hindustan Times",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v1/news/source?source=Hindustan Times&limit=2",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"news",
+										"source"
+									],
+									"query": [
+										{
+											"key": "source",
+											"value": "Hindustan Times"
+										},
+										{
+											"key": "limit",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Reuters",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v1/news/source?source=Reuters&limit=2",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"news",
+										"source"
+									],
+									"query": [
+										{
+											"key": "source",
+											"value": "Reuters"
+										},
+										{
+											"key": "limit",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "News18",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v1/news/source?source=News18&limit=2",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"news",
+										"source"
+									],
+									"query": [
+										{
+											"key": "source",
+											"value": "News18"
+										},
+										{
+											"key": "limit",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "Test major news sources"
+				},
+				{
+					"name": "Test Search Queries",
+					"item": [
+						{
+							"name": "Cricket Search",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v1/news/search?query=cricket&limit=3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"news",
+										"search"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "cricket"
+										},
+										{
+											"key": "limit",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AI Search",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v1/news/search?query=AI&limit=3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"news",
+										"search"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "AI"
+										},
+										{
+											"key": "limit",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Election Search",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v1/news/search?query=election&limit=3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"news",
+										"search"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "election"
+										},
+										{
+											"key": "limit",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "Test various search queries"
+				},
+				{
+					"name": "Test Score Ranges",
+					"item": [
+						{
+							"name": "High Quality (0.8+)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v1/news/score?min_score=0.8&limit=3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"news",
+										"score"
+									],
+									"query": [
+										{
+											"key": "min_score",
+											"value": "0.8"
+										},
+										{
+											"key": "limit",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Medium Quality (0.5+)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v1/news/score?min_score=0.5&limit=3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"news",
+										"score"
+									],
+									"query": [
+										{
+											"key": "min_score",
+											"value": "0.5"
+										},
+										{
+											"key": "limit",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "All Articles (0.0+)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v1/news/score?min_score=0.0&limit=3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"news",
+										"score"
+									],
+									"query": [
+										{
+											"key": "min_score",
+											"value": "0.0"
+										},
+										{
+											"key": "limit",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "Test different quality score thresholds"
+				},
+				{
+					"name": "Test Locations",
+					"item": [
+						{
+							"name": "Delhi (10km radius)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v1/news/nearby?lat=28.6139&lon=77.2090&radius_km=10&limit=3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"news",
+										"nearby"
+									],
+									"query": [
+										{
+											"key": "lat",
+											"value": "28.6139"
+										},
+										{
+											"key": "lon",
+											"value": "77.2090"
+										},
+										{
+											"key": "radius_km",
+											"value": "10"
+										},
+										{
+											"key": "limit",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Mumbai (20km radius)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v1/news/nearby?lat=19.0760&lon=72.8777&radius_km=20&limit=3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"news",
+										"nearby"
+									],
+									"query": [
+										{
+											"key": "lat",
+											"value": "19.0760"
+										},
+										{
+											"key": "lon",
+											"value": "72.8777"
+										},
+										{
+											"key": "radius_km",
+											"value": "20"
+										},
+										{
+											"key": "limit",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Bangalore (15km radius)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v1/news/nearby?lat=12.9716&lon=77.5946&radius_km=15&limit=3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"news",
+										"nearby"
+									],
+									"query": [
+										{
+											"key": "lat",
+											"value": "12.9716"
+										},
+										{
+											"key": "lon",
+											"value": "77.5946"
+										},
+										{
+											"key": "radius_km",
+											"value": "15"
+										},
+										{
+											"key": "limit",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "Test location-based queries for major Indian cities"
+				}
+			],
+			"description": "Comprehensive test scenarios for all endpoints"
+		},
+		{
+			"name": "Error Testing",
+			"item": [
+				{
+					"name": "Invalid Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/news/category?category=invalid_category&limit=5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"news",
+								"category"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "invalid_category"
+								},
+								{
+									"key": "limit",
+									"value": "5"
+								}
+							]
+						},
+						"description": "Test with invalid category (should return empty results)"
+					},
+					"response": []
+				},
+				{
+					"name": "Empty Search Query",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/news/search?query=&limit=5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"news",
+								"search"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": ""
+								},
+								{
+									"key": "limit",
+									"value": "5"
+								}
+							]
+						},
+						"description": "Test with empty search query (should return 400 error)"
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid Score Range",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/news/score?min_score=1.5&limit=5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"news",
+								"score"
+							],
+							"query": [
+								{
+									"key": "min_score",
+									"value": "1.5"
+								},
+								{
+									"key": "limit",
+									"value": "5"
+								}
+							]
+						},
+						"description": "Test with invalid score range (should return 400 error)"
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid Coordinates",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/news/nearby?lat=200&lon=300&radius_km=10&limit=5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"news",
+								"nearby"
+							],
+							"query": [
+								{
+									"key": "lat",
+									"value": "200"
+								},
+								{
+									"key": "lon",
+									"value": "300"
+								},
+								{
+									"key": "radius_km",
+									"value": "10"
+								},
+								{
+									"key": "limit",
+									"value": "5"
+								}
+							]
+						},
+						"description": "Test with invalid coordinates (should return 400 error)"
+					},
+					"response": []
+				},
+				{
+					"name": "Empty Smart Query",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"\",\n  \"limit\": 5\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/news/query",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"news",
+								"query"
+							]
+						},
+						"description": "Test with empty smart query (should return 400 error)"
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid Smart Query JSON",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"technology news\",\n  \"limit\": 5,\n  \"invalid_field\": \"test\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/news/query",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"news",
+								"query"
+							]
+						},
+						"description": "Test with invalid JSON structure (should still work with extra fields)"
+					},
+					"response": []
+				}
+			],
+			"description": "Error handling and edge case testing"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000",
+			"type": "string",
+			"description": "Base URL for the API"
+		},
+		{
+			"key": "category",
+			"value": "technology",
+			"type": "string",
+			"description": "Default category for testing"
+		},
+		{
+			"key": "limit",
+			"value": "5",
+			"type": "string",
+			"description": "Default limit for number of articles"
+		},
+		{
+			"key": "search_query",
+			"value": "cricket",
+			"type": "string",
+			"description": "Default search query"
+		},
+		{
+			"key": "source_name",
+			"value": "Hindustan Times",
+			"type": "string",
+			"description": "Default news source"
+		},
+		{
+			"key": "min_score",
+			"value": "0.7",
+			"type": "string",
+			"description": "Default minimum relevance score"
+		},
+		{
+			"key": "latitude",
+			"value": "28.6139",
+			"type": "string",
+			"description": "Default latitude (Delhi)"
+		},
+		{
+			"key": "longitude",
+			"value": "77.2090",
+			"type": "string",
+			"description": "Default longitude (Delhi)"
+		},
+		{
+			"key": "radius_km",
+			"value": "10",
+			"type": "string",
+			"description": "Default search radius in kilometers"
+		},
+		{
+			"key": "smart_query",
+			"value": "technology news",
+			"type": "string",
+			"description": "Default smart query"
+		},
+		{
+			"key": "include_summary",
+			"value": "true",
+			"type": "string",
+			"description": "Include LLM-generated summaries"
+		},
+		{
+			"key": "include_analysis",
+			"value": "true",
+			"type": "string",
+			"description": "Include query analysis details"
+		}
+	]
+}
+
+
